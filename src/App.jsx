@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 
 // ─── GOOGLE SHEETS 연동 ($0 비용, AI API 아님) ───
-const APPS_SCRIPT_URL = https://script.google.com/macros/s/AKfycbwdG3Tow1sarsa-tHEzDm0L3MiIpynv5EQJE66Ft3mYOd75Qt5L1lsIHE0ETSIr6lM/exec
+const APPS_SCRIPT_URL = const 'https://script.google.com/macros/s/AKfycbwdG3Tow1sarsa-tHEzDm0L3MiIpynv5EQJE66Ft3mYOd75Qt5L1lsIHE0ETSIr6lM/exec';
 
 async function callSheets(action, body = {}) {
   const response = await fetch(APPS_SCRIPT_URL + '?action=' + action, {
