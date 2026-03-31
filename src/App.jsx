@@ -21,11 +21,81 @@ async function readSheets(action, params = '') {
 
 // ─── EMBEDDED LIBRARY DATA (170 exercises) ───
 const RAW_LIB = [{"id":"PW-001","n":"바벨 행 클린","ne":"Barbell Hang Clean","p":"Hinge","t":"Power","tg":"Full Body","eq":"Barbell","sp":"Fast","sc":"Main","sr":"4x3","rs":"150s","it":"75-85%","pt":"힙 힌지에서 폭발적 트리플 익스텐션, 프론트 랙 캐치","v":"https://youtu.be/DaKC_BEN5bk?si=lRFIFF35WCnD50lM"},{"id":"PW-002","n":"바벨 파워 클린","ne":"Barbell Power Clean","p":"Hinge","t":"Power","tg":"Full Body","eq":"Barbell","sp":"Fast","sc":"Main","sr":"4x3","rs":"150s","it":"75-85%","pt":"1st Pull 천천히, 2nd Pull 폭발적","v":"https://youtube.com/shorts/bmAkgnh7xjc?si=LcdVEB3iHl5e8ZR2"},{"id":"PW-003","n":"트랩바 점프","ne":"Trap Bar Jump","p":"Plyo","t":"Power","tg":"Quad","eq":"TrapBar","sp":"Fast","sc":"Main","sr":"4x5","rs":"120s","it":"30-40%","pt":"최대 높이 점프, 착지 소프트하게","v":"https://youtube.com/shorts/0e6RAkY_Zbk?si=RV_Zh_GFktuizb-c"},{"id":"PW-004","n":"박스 점프","ne":"Box Jump","p":"Plyo","t":"Power","tg":"Quad","eq":"Box","sp":"Fast","sc":"Main","sr":"4x5","rs":"120s","it":"체중","pt":"팔 스윙 활용, 소프트 착지, 스텝다운","v":"https://youtube.com/shorts/7EfeTsHZ5vk?si=sU76QMuXlTG2LYzI"},{"id":"PW-005","n":"드롭 점프","ne":"Drop Jump","p":"Plyo","t":"SSC","tg":"Calf","eq":"Box","sp":"Fast","sc":"Main","sr":"3x5","rs":"120s","it":"체중","pt":"접지 시간 최소화, 착지 즉시 점프","v":"https://youtube.com/shorts/gpXV2dzZ-oA?si=hpocRDzjgIBH35TH"},{"id":"PW-006","n":"메디신볼 체스트패스","ne":"Med Ball Chest Pass","p":"Push","t":"Power","tg":"Chest","eq":"MedBall","sp":"Fast","sc":"Main","sr":"3x8","rs":"90s","it":"3-5kg","pt":"최대 속도 릴리즈, 팔꿈치 완전 신전","v":"https://youtube.com/shorts/X07VbltBxg8?si=I-hsbGH5eBlPP2Vw"},{"id":"PW-007","n":"메디신볼 오버헤드 스로우","ne":"Med Ball OH Throw","p":"Push","t":"Power","tg":"Shoulder","eq":"MedBall","sp":"Fast","sc":"Main","sr":"3x8","rs":"90s","it":"3-5kg","pt":"전신 연동, 힙 익스텐션 시작","v":"https://youtube.com/shorts/NktkzTpq1Lo?si=jUXZUiy5ApjO2YkZ"},{"id":"PW-008","n":"메디신볼 로테이셔널 스로우","ne":"Med Ball Rotational Throw","p":"Rotation","t":"Power","tg":"Core","eq":"MedBall","sp":"Fast","sc":"Main","sr":"3x6 each","rs":"90s","it":"3-5kg","pt":"하체→코어→상체, 벽에 최대 속도","v":"https://youtube.com/shorts/02c2YLgF8iE?si=xCwa5suSfke6UYHL"},{"id":"PW-009","n":"메디신볼 시티트 오버헤드 스로우","ne":"Med Ball Steaded OH Throw","p":"Push","t":"Power","tg":"Core","eq":"MedBall","sp":"Fast","sc":"Main","sr":"3x6","rs":"90s","it":"4-6kg","pt":"힙 힌지→폭발적 신전","v":"https://youtube.com/shorts/0nEg-Hr8WAw?si=9FyaAJ1cOpHuJP9Q"},{"id":"PW-010","n":"덤벨 푸시프레스","ne":"DB Push Press","p":"Push","t":"Power","tg":"Shoulder","eq":"Dumbbell","sp":"Fast","sc":"Main","sr":"4x5","rs":"120s","it":"70-80%","pt":"딥 후 폭발적 드라이브, 록아웃","v":"https://youtube.com/shorts/EYOumY8pY2U?si=BgS9BzWnFtLhNjNB"},{"id":"PW-011","n":"플라이오 푸시업","ne":"Plyo Push-up","p":"Push","t":"Power","tg":"Chest","eq":"Bodyweight","sp":"Fast","sc":"Main","sr":"3x6","rs":"120s","it":"체중","pt":"착지 시 팔꿈치 굽혀 충격 흡수","v":"https://youtube.com/shorts/iO0sT5FDgj4"},{"id":"PW-012","n":"래터럴 바운드","ne":"Lateral Bound","p":"Plyo","t":"Power","tg":"Hip","eq":"Bodyweight","sp":"Fast","sc":"Main","sr":"3x6 each","rs":"90s","it":"체중","pt":"착지 후 1초 스틱, 무릎 정렬","v":"https://youtu.be/soqQy4dzEts?si=zixTgMzGVCEWOeqs"},{"id":"PW-013","n":"싱글레그 래터럴 바운드 & 턱 점프","ne":"Single Leg Lateral Bound & Tuck Jump","p":"Plyo","t":"Power","tg":"Quad","eq":"Bodyweight","sp":"Fast","sc":"Main","sr":"3x5 each","rs":"90s","it":"체중","pt":"무릎 드라이브, 착지 안정성","v":"https://youtube.com/shorts/xyrB--UaRa4?si=josTRA7Y-U5itiGs"},{"id":"PW-014","n":"케틀벨 스윙","ne":"Kettlebell Swing","p":"Hinge","t":"Power","tg":"Glute","eq":"Kettlebell","sp":"Fast","sc":"Main","sr":"4x10","rs":"90s","it":"중량","pt":"힙 힌지, 팔 아닌 힙으로 스윙","v":"https://youtu.be/1cVT3ee9mgU?si=E8ubkPrA7GVjHcMM&t=13"},{"id":"PW-015","n":"바벨 점프 스쿼트","ne":"Barbell Jump Squat","p":"Plyo","t":"Power","tg":"Quad","eq":"Barbell","sp":"Fast","sc":"Main","sr":"4x6","rs":"120s","it":"30-40%","pt":"쿼터 깊이 최대 점프, 착지 흡수","v":"https://youtube.com/shorts/8egQqUhWzSU?si=HwaZMQAO4PwCyCrE"},{"id":"PW-016","n":"바벨 하이풀","ne":"Barbell High Pull","p":"Pull","t":"Power","tg":"Full Body","eq":"Barbell","sp":"Fast","sc":"Main","sr":"4x8","rs":"90s","it":"빈봉~가볍게","pt":"골반 폭발적 힘, 팔은 보조","v":"https://youtube.com/shorts/er9Rc2S_kLA?si=VVHuRAGjEvyDWYHZ"},{"id":"PW-017","n":"덤벨 회전 파워 드라이브","ne":"DB Rotational Power Drive","p":"Rotation","t":"Power","tg":"Core","eq":"Dumbbell","sp":"Fast","sc":"Main","sr":"3x8 each","rs":"60s","it":"자세유지+빠른속도","pt":"회전 시 하체 주도, 코어 연동","v":"https://youtube.com/shorts/mEUVc2bNGNw?si=-9Gx82LvJN-oLJXB"},{"id":"PW-018","n":"바벨 스피드 벤치프레스","ne":"Speed Bench Press","p":"Push","t":"Power","tg":"Chest","eq":"Barbell","sp":"Fast","sc":"Main","sr":"5x4","rs":"60s","it":"1RM 40-55%","pt":"바를 최대한 빠르게 밀기 , 빠르게 3회 = 1회","v":"https://youtube.com/shorts/dnwxEFZYi-Q"},{"id":"PW-019","n":"밴드 덤벨 프레스","ne":"Banded DB Press","p":"Push","t":"Power","tg":"Chest","eq":"Dumbbell, Band","sp":"Fast","sc":"Main","sr":"4x5","rs":"60s","it":"가볍게 빠르게","pt":"하체에 계속 힘주기","v":"https://youtube.com/shorts/d1kUN7DJqeQ"},{"id":"PW-020","n":"덤벨 플로어 프레스 스피드","ne":"DB Floor Press Speed","p":"Push","t":"Power","tg":"Chest","eq":"Dumbbell","sp":"Fast","sc":"Main","sr":"5x6","rs":"60s","it":"빠른속도 가능 중량","pt":"바닥을 밀어내듯 폭발적","v":"https://youtube.com/shorts/TvPviMnKg6s"},{"id":"PW-021","n":"싱글암 푸시프레스 하프닐링","ne":"SA Push Press HK","p":"Push","t":"Power","tg":"Shoulder","eq":"Dumbbell","sp":"Fast","sc":"Main","sr":"4x8 each","rs":"60s","it":"자세유지+무겁게","pt":"하프닐링 하체 반동→팔 전달","v":"https://youtube.com/shorts/CNqBJSlu3IY"},{"id":"PW-022","n":"덤벨 인클라인 스피드 프레스","ne":"DB Incline Speed Press","p":"Push","t":"Power","tg":"Chest","eq":"Dumbbell","sp":"Fast","sc":"Main","sr":"4x12","rs":"60s","it":"속도유지 중량","pt":"반동 없이 순수 팔 속도","v":"https://youtube.com/shorts/-IpH1-c50d4"},{"id":"PW-023","n":"덤벨 디클라인 스피드 프레스","ne":"DB Decline Speed Press","p":"Push","t":"Power","tg":"Chest","eq":"Dumbbell","sp":"Fast","sc":"Main","sr":"4x8","rs":"60s","it":"25-35kg","pt":"반동 없이 스피드 집중","v":"https://youtube.com/shorts/EohNba8GraI"},{"id":"PW-024","n":"싱글암 랜드마인 푸시프레스","ne":"SA Landmine Push Press","p":"Push","t":"Power","tg":"Shoulder","eq":"Barbell","sp":"Fast","sc":"Main","sr":"4x8 each","rs":"60s","it":"5-15kg","pt":"최대 가동 범위 프레스","v":"https://youtube.com/shorts/ewd9eJOmgmM"},{"id":"PW-025","n":"바벨 스내치 그립 점프","ne":"Snatch Grip Jump","p":"Plyo","t":"Power","tg":"Hip","eq":"Barbell","sp":"Fast","sc":"Main","sr":"4x8","rs":"120s","it":"체중 15-20%","pt":"빈봉 연습 먼저, 폭발적 점프","v":"https://youtu.be/tHeWiiC_vgw"},{"id":"ST-001","n":"바벨 백스쿼트","ne":"Barbell Back Squat","p":"Squat","t":"Strength","tg":"Quad","eq":"Barbell","sp":"Controlled","sc":"Main","sr":"5x8","rs":"150s","it":"80-90%","pt":"발 전체 접지, 무릎 발끝 방향","v":"https://youtu.be/-bJIpOq-LWk"},{"id":"ST-002","n":"바벨 프론트스쿼트","ne":"Barbell Front Squat","p":"Squat","t":"Strength","tg":"Quad","eq":"Barbell","sp":"Controlled","sc":"Main","sr":"4x8","rs":"150s","it":"1RM 70%","pt":"팔꿈치 높게, 상체 수직","v":"https://youtube.com/shorts/EVT6Mx_WNBc"},{"id":"ST-003","n":"바벨 데드리프트","ne":"Barbell Deadlift","p":"Hinge","t":"Strength","tg":"Hamstring","eq":"Barbell","sp":"Controlled","sc":"Main","sr":"3x12","rs":"180s","it":"60-70%","pt":"척추 중립, 천천히→빠르게","v":"https://youtu.be/AweC3UaM14o"},{"id":"ST-004","n":"루마니안 데드리프트","ne":"Romanian Deadlift","p":"Hinge","t":"Strength","tg":"Hamstring","eq":"Barbell","sp":"Controlled","sc":"Main","sr":"4x6","rs":"120s","it":"70-80%","pt":"힙 힌지, 바 몸에 밀착","v":"https://youtu.be/xR6PKlmysOI"},{"id":"ST-005","n":"바벨 벤치프레스","ne":"Barbell Bench Press","p":"Push","t":"Strength","tg":"Chest","eq":"Barbell","sp":"Controlled","sc":"Main","sr":"4x5","rs":"150s","it":"80-90%","pt":"견갑골 후인하강, 바 직선","v":""},{"id":"ST-006","n":"바벨 오버헤드프레스","ne":"Barbell OHP","p":"Push","t":"Strength","tg":"Shoulder","eq":"Barbell","sp":"Controlled","sc":"Main","sr":"4x6","rs":"120s","it":"75-85%","pt":"코어 잠금, 바 얼굴 옆","v":""},{"id":"ST-007","n":"풀업 가중","ne":"Weighted Pull-up","p":"Pull","t":"Strength","tg":"Back","eq":"Bodyweight","sp":"Controlled","sc":"Main","sr":"4x5","rs":"120s","it":"체중+추가","pt":"데드행 시작, 견갑골 우선","v":""},{"id":"ST-008","n":"인클라인 덤벨프레스","ne":"Incline DB Press","p":"Push","t":"Strength","tg":"Chest","eq":"Dumbbell","sp":"Controlled","sc":"Main","sr":"4x8","rs":"90s","it":"70-80%","pt":"30도 경사, 상부 가슴","v":""},{"id":"ST-009","n":"덤벨 로우","ne":"DB Row","p":"Pull","t":"Strength","tg":"Back","eq":"Dumbbell","sp":"Controlled","sc":"Main","sr":"3x8 each","rs":"90s","it":"70-80%","pt":"팔꿈치 골반 쪽, 회전 최소화","v":""},{"id":"ST-010","n":"불가리안 스플릿스쿼트","ne":"Bulgarian Split Squat","p":"Lunge","t":"Strength","tg":"Quad","eq":"Dumbbell","sp":"Controlled","sc":"Main","sr":"3x8 each","rs":"90s","it":"70-80%","pt":"앞발 뒤꿈치, 몸통 수직","v":""},{"id":"ST-011","n":"힙 스러스트","ne":"Hip Thrust","p":"Hinge","t":"Strength","tg":"Glute","eq":"Barbell","sp":"Controlled","sc":"Main","sr":"4x12","rs":"90s","it":"70-80%","pt":"둔근 최대 수축, 과신전 금지","v":"https://youtu.be/5S8SApGU_Lk"},{"id":"ST-012","n":"바벨 워킹 런지","ne":"Barbell Walking Lunge","p":"Lunge","t":"Strength","tg":"Quad","eq":"Barbell","sp":"Controlled","sc":"Main","sr":"5x8","rs":"90s","it":"60-70%","pt":"보폭 일정, 무릎 90도","v":"https://youtu.be/HSYMPiGycsY"},{"id":"ST-013","n":"랫 풀다운","ne":"Lat Pulldown","p":"Pull","t":"Strength","tg":"Back","eq":"Cable","sp":"Controlled","sc":"Main","sr":"3x10","rs":"90s","it":"70-80%","pt":"견갑골 하강, 팔꿈치 옆구리","v":""},{"id":"ST-014","n":"시티드 로우","ne":"Seated Cable Row","p":"Pull","t":"Strength","tg":"Back","eq":"Cable","sp":"Controlled","sc":"Main","sr":"3x10","rs":"90s","it":"70-80%","pt":"흉추 신전, 견갑골 후인","v":""},{"id":"ST-015","n":"덤벨 숄더프레스","ne":"DB Shoulder Press","p":"Push","t":"Strength","tg":"Shoulder","eq":"Dumbbell","sp":"Controlled","sc":"Main","sr":"4x8","rs":"90s","it":"70-80%","pt":"팔꿈치 45도, 록아웃","v":""},{"id":"ST-016","n":"싱글암 덤벨 로우","ne":"SA DB Row","p":"Pull","t":"Strength","tg":"Back","eq":"Dumbbell","sp":"Controlled","sc":"Main","sr":"4x8 each","rs":"90s","it":"체중 20-30%","pt":"벤치 한 손 지지, 코어 안정","v":"https://youtube.com/shorts/w9TsaN1A_30"},{"id":"ST-017","n":"트랩바 데드리프트","ne":"Trap Bar Deadlift","p":"Hinge","t":"Strength","tg":"Quad","eq":"TrapBar","sp":"Controlled","sc":"Main","sr":"4x5","rs":"150s","it":"85-95%","pt":"무릎 더 굽혀도 OK","v":""},{"id":"ST-018","n":"클로즈그립 벤치프레스","ne":"Close Grip Bench","p":"Push","t":"Strength","tg":"Arm","eq":"Barbell","sp":"Controlled","sc":"Main","sr":"4x8","rs":"120s","it":"1RM 70%","pt":"어깨너비, 팔꿈치 몸에","v":"https://youtu.be/XEFDMwmrLAM"},{"id":"ST-019","n":"덤벨 스텝업","ne":"DB Step-up","p":"Lunge","t":"Strength","tg":"Quad","eq":"Dumbbell","sp":"Controlled","sc":"Main","sr":"3x8 each","rs":"90s","it":"70-80%","pt":"뒷발 밀지 않기","v":""},{"id":"ST-020","n":"바벨 굿모닝","ne":"Barbell Good Morning","p":"Hinge","t":"Strength","tg":"Hamstring","eq":"Barbell","sp":"Controlled","sc":"Main","sr":"4x10","rs":"120s","it":"15-20kg","pt":"힙 힌지, 허리 말림 금지","v":"https://youtube.com/shorts/7cpldMZjLOs"},{"id":"ST-021","n":"펜들레이 로우","ne":"Pendlay Row","p":"Pull","t":"Strength","tg":"Back","eq":"Barbell","sp":"Fast","sc":"Main","sr":"4x8","rs":"60s","it":"몸무게 70-80%","pt":"가슴 열고 팔꿈치 뒤로","v":"https://youtube.com/shorts/0PSfteHhUtg"},{"id":"ST-022","n":"고릴라 로우","ne":"Gorilla Row","p":"Pull","t":"Strength","tg":"Back","eq":"Dumbbell","sp":"Controlled","sc":"Main","sr":"3x12 each","rs":"60s","it":"70-80%","pt":"견갑 먼저, 팔 따라오기","v":"https://youtube.com/shorts/w8BxFfKhuw8"},{"id":"ST-023","n":"바벨 B스탠스 데드리프트","ne":"B-Stance Deadlift","p":"Hinge","t":"Strength","tg":"Glute","eq":"Barbell","sp":"Controlled","sc":"Main","sr":"5x8 each","rs":"90s","it":"70-80%","pt":"앞쪽 다리 바깥 엉덩이","v":"https://youtu.be/GK7aZGipTj0"},{"id":"ST-024","n":"프론트풋 엘리베이티드 스플릿 스쿼트","ne":"FFE Split Squat","p":"Lunge","t":"Strength","tg":"Quad","eq":"Dumbbell","sp":"Controlled","sc":"Main","sr":"4x12 each","rs":"60s","it":"체중 30-40%","pt":"3초 하강, 깊은 ROM","v":"https://youtube.com/shorts/ue44yRNK95o"},{"id":"ST-025","n":"바벨 힙 쓰러스트 pause","ne":"Hip Thrust Pause","p":"Hinge","t":"Strength","tg":"Glute","eq":"Barbell","sp":"Controlled","sc":"Main","sr":"4x12","rs":"90s","it":"체중 2배","pt":"위에서 3초, 바닥 닿으면 안됨","v":"https://youtube.com/shorts/To7hXXuZJ60"},{"id":"HY-001","n":"케이블 체스트플라이","ne":"Cable Chest Fly","p":"Push","t":"Hypertrophy","tg":"Chest","eq":"Cable","sp":"Steady","sc":"Main","sr":"3x12","rs":"60s","it":"60-70%","pt":"스트레치 2초 홀드","v":""},{"id":"HY-002","n":"페이스풀","ne":"Face Pull","p":"Pull","t":"Hypertrophy","tg":"Shoulder","eq":"Cable","sp":"Steady","sc":"Main","sr":"3x15","rs":"60s","it":"가볍게","pt":"외회전, 후면삼각근 수축","v":"https://youtube.com/shorts/ZBhK5Vzphc4"},{"id":"HY-003","n":"바이셉 컬","ne":"DB Bicep Curl","p":"Pull","t":"Hypertrophy","tg":"Arm","eq":"Dumbbell","sp":"Steady","sc":"Main","sr":"3x12","rs":"60s","it":"60-70%","pt":"상완 고정, 수피네이션","v":""},{"id":"HY-004","n":"트라이셉 푸시다운","ne":"Tricep Pushdown","p":"Push","t":"Hypertrophy","tg":"Arm","eq":"Cable","sp":"Steady","sc":"Main","sr":"3x12","rs":"60s","it":"60-70%","pt":"팔꿈치 고정, 완전 신전","v":""},{"id":"HY-005","n":"래터럴 레이즈","ne":"Lateral Raise","p":"Push","t":"Hypertrophy","tg":"Shoulder","eq":"Dumbbell","sp":"Steady","sc":"Main","sr":"3x15","rs":"60s","it":"가볍게","pt":"90도까지만","v":""},{"id":"HY-006","n":"해머 컬","ne":"Hammer Curl","p":"Pull","t":"Hypertrophy","tg":"Arm","eq":"Dumbbell","sp":"Steady","sc":"Main","sr":"3x12","rs":"60s","it":"60-70%","pt":"중립 그립, 상완 고정","v":""},{"id":"HY-007","n":"오버헤드 트라이셉 익스텐션","ne":"OH Tricep Extension","p":"Push","t":"Hypertrophy","tg":"Arm","eq":"Dumbbell","sp":"Steady","sc":"Main","sr":"3x12","rs":"60s","it":"60-70%","pt":"팔꿈치 앞으로, 스트레치","v":""},{"id":"HY-008","n":"인클라인 덤벨 컬","ne":"Incline DB Curl","p":"Pull","t":"Hypertrophy","tg":"Arm","eq":"Dumbbell","sp":"Steady","sc":"Main","sr":"3x10","rs":"60s","it":"60-70%","pt":"45도, 롱헤드 스트레치","v":""},{"id":"HY-009","n":"인클라인 리어델트 로우","ne":"Incline Rear Delt Row","p":"Pull","t":"Hypertrophy","tg":"Shoulder","eq":"Dumbbell","sp":"Steady","sc":"Main","sr":"3x15","rs":"60s","it":"가볍게","pt":"후면어깨+등 연결","v":"https://youtube.com/shorts/qEDZYYPjoB4"},{"id":"HY-010","n":"레그 컬","ne":"Leg Curl","p":"Pull","t":"Hypertrophy","tg":"Hamstring","eq":"Machine","sp":"Steady","sc":"Main","sr":"3x12","rs":"60s","it":"60-70%","pt":"엉덩이 안 들리게, 1초 홀드","v":""},{"id":"HY-011","n":"레그 익스텐션","ne":"Leg Extension","p":"Push","t":"Hypertrophy","tg":"Quad","eq":"Machine","sp":"Steady","sc":"Main","sr":"3x12","rs":"60s","it":"60-70%","pt":"완전 신전, 천천히 내리기","v":""},{"id":"HY-012","n":"카프 레이즈","ne":"Calf Raise","p":"Push","t":"Hypertrophy","tg":"Calf","eq":"Machine","sp":"Steady","sc":"Main","sr":"3x15","rs":"60s","it":"60-70%","pt":"최대 ROM, 2초 홀드","v":""},{"id":"HY-013","n":"레그 프레스","ne":"Leg Press","p":"Squat","t":"Hypertrophy","tg":"Quad","eq":"Machine","sp":"Steady","sc":"Main","sr":"4x10","rs":"90s","it":"70-80%","pt":"풋 포지션으로 타겟 변경","v":""},{"id":"HY-014","n":"덤벨 풀오버","ne":"DB Pullover","p":"Pull","t":"Hypertrophy","tg":"Back","eq":"Dumbbell","sp":"Steady","sc":"Main","sr":"3x12","rs":"60s","it":"60-70%","pt":"랫 스트레치","v":""},{"id":"HY-015","n":"케이블 크런치","ne":"Cable Crunch","p":"Stabilize","t":"Hypertrophy","tg":"Core","eq":"Cable","sp":"Steady","sc":"Main","sr":"3x15","rs":"60s","it":"60-70%","pt":"척추 플렉션으로","v":""},{"id":"HY-016","n":"프리쳐 컬","ne":"Preacher Curl","p":"Pull","t":"Hypertrophy","tg":"Arm","eq":"Barbell","sp":"Steady","sc":"Main","sr":"3x10","rs":"60s","it":"60-70%","pt":"상완 밀착, 네거티브 천천히","v":""},{"id":"HY-017","n":"슈러그","ne":"Barbell Shrug","p":"Pull","t":"Hypertrophy","tg":"Shoulder","eq":"Barbell","sp":"Steady","sc":"Main","sr":"3x12","rs":"60s","it":"70-80%","pt":"귀 방향, 롤링 금지","v":""},{"id":"HY-018","n":"슬라이딩 햄스트링 컬","ne":"Sliding Ham Curl","p":"Pull","t":"Hypertrophy","tg":"Hamstring","eq":"Bodyweight","sp":"Steady","sc":"Main","sr":"3x15","rs":"60s","it":"체중","pt":"수건/플레이트 대체 가능","v":"https://youtu.be/e17hjjvQLQQ"},{"id":"HY-019","n":"밴드 푸쉬업","ne":"Banded Push-up","p":"Push","t":"Hypertrophy","tg":"Chest","eq":"Band","sp":"Steady","sc":"Main","sr":"3x20","rs":"60s","it":"밴드 텐션","pt":"가변 저항 추가","v":"https://youtube.com/shorts/RYV6D14cI0s"},{"id":"HY-020","n":"리버스 크런치","ne":"Reverse Crunch","p":"Stabilize","t":"Hypertrophy","tg":"Core","eq":"Bodyweight","sp":"Fast","sc":"Main","sr":"3x20","rs":"60s","it":"체중","pt":"꼬리뼈 들릴 정도로 강하게","v":"https://youtu.be/N5CHqtgiylc"},{"id":"SB-001","n":"팔로프 프레스","ne":"Pallof Press","p":"Stabilize","t":"Stability","tg":"Core","eq":"Cable","sp":"Controlled","sc":"Accessory","sr":"4x12","rs":"60s","it":"가볍게","pt":"코어 회전 저항, 팔 신전","v":"https://youtube.com/shorts/Ar8-f3k70zY"},{"id":"SB-002","n":"데드 버그","ne":"Dead Bug","p":"Stabilize","t":"Stability","tg":"Core","eq":"Bodyweight","sp":"Controlled","sc":"Accessory","sr":"3x12","rs":"60s","it":"체중","pt":"허리 바닥 밀착, 호흡 연동","v":"https://youtube.com/shorts/VAVrsPX9GHY"},{"id":"SB-003","n":"사이드 플랭크","ne":"Side Plank","p":"Stabilize","t":"Stability","tg":"Core","eq":"Bodyweight","sp":"Controlled","sc":"Accessory","sr":"3x30s each","rs":"60s","it":"체중","pt":"어깨 아래 팔꿈치, 골반 정렬","v":""},{"id":"SB-004","n":"버드독","ne":"Bird Dog","p":"Stabilize","t":"Stability","tg":"Core","eq":"Bodyweight","sp":"Controlled","sc":"Accessory","sr":"3x8 each","rs":"60s","it":"체중","pt":"대각선 신전, 골반 레벨","v":""},{"id":"SB-005","n":"터키시 겟업","ne":"Turkish Get-up","p":"Stabilize","t":"Stability","tg":"Full Body","eq":"Kettlebell","sp":"Controlled","sc":"Accessory","sr":"3x3 each","rs":"90s","it":"가볍게","pt":"각 단계 정확히","v":""},{"id":"SB-006","n":"베어 크롤","ne":"Bear Crawl","p":"Carry","t":"Stability","tg":"Core","eq":"Bodyweight","sp":"Controlled","sc":"Accessory","sr":"4x15회","rs":"60s","it":"체중","pt":"무릎 2인치, 골반 안정","v":"https://youtube.com/shorts/l8eRtgP7ZoY"},{"id":"SB-007","n":"싱글레그 글루트 브릿지","ne":"SL Glute Bridge","p":"Hinge","t":"Stability","tg":"Glute","eq":"Bodyweight","sp":"Controlled","sc":"Accessory","sr":"3x10 each","rs":"60s","it":"체중","pt":"골반 레벨 유지","v":"https://youtube.com/shorts/Cpc9qjU8tEY"},{"id":"SB-008","n":"밴드 풀 어파트","ne":"Band Pull-apart","p":"Pull","t":"Stability","tg":"Scapular","eq":"Band","sp":"Controlled","sc":"Accessory","sr":"2x30","rs":"30s","it":"가볍게","pt":"견갑골 후인+하강","v":"https://youtube.com/shorts/SuvO4TBwSu4"},{"id":"SB-009","n":"플랭크 숄더 탭","ne":"Plank Shoulder Tap","p":"Stabilize","t":"Stability","tg":"Core","eq":"Bodyweight","sp":"Controlled","sc":"Accessory","sr":"3x20","rs":"60s","it":"체중","pt":"골반 흔들림 최소화","v":"https://youtube.com/shorts/VfwCQ14soUo"},{"id":"SB-010","n":"힙 에어플레인","ne":"Hip Airplane","p":"Stabilize","t":"Stability","tg":"Hip","eq":"Bodyweight","sp":"Controlled","sc":"Accessory","sr":"2x8 each","rs":"60s","it":"체중","pt":"싱글레그+고관절 회전","v":"https://youtube.com/shorts/U5f8h7FDEa0"},{"id":"SB-011","n":"싱글암 오버헤드 캐리","ne":"SA OH Carry","p":"Carry","t":"Stability","tg":"Shoulder","eq":"Dumbbell","sp":"Controlled","sc":"Accessory","sr":"4x30s","rs":"60s","it":"코어힘 들어올 정도","pt":"몸 흔들림 없이","v":"https://youtube.com/shorts/5X823MU2ZzQ"},{"id":"SB-012","n":"푸시업 플러스","ne":"Push-up Plus","p":"Push","t":"Stability","tg":"Scapular","eq":"Bodyweight","sp":"Controlled","sc":"Warmup","sr":"3x20","rs":"30s","it":"체중","pt":"견갑골 전인 추가","v":"https://youtube.com/shorts/Jpd24buw2IE"},{"id":"SB-013","n":"스캡 풀업","ne":"Scap Pull-up","p":"Pull","t":"Stability","tg":"Scapular","eq":"Bodyweight","sp":"Controlled","sc":"Warmup","sr":"3x15","rs":"30s","it":"체중","pt":"팔 안 굽히고 견갑 하강","v":"https://youtube.com/shorts/nw-FIMwCkLs"},{"id":"SB-014","n":"사이드 플랭크 힙 레이즈","ne":"SP Hip Raise","p":"Stabilize","t":"Stability","tg":"Core","eq":"Bodyweight","sp":"Controlled","sc":"Accessory","sr":"3x20 each","rs":"60s","it":"체중","pt":"엉덩이 바닥 안 닿게","v":"https://youtube.com/shorts/3W2N3X1izC8"},{"id":"SB-015","n":"사이드 플랭크 힙 어브덕션","ne":"SP Hip Abduction","p":"Stabilize","t":"Stability","tg":"Hip","eq":"Band","sp":"Controlled","sc":"Accessory","sr":"2x20 each","rs":"60s","it":"밴드","pt":"사이드 플랭크+힙 어브덕션","v":"https://youtube.com/shorts/Gwlp_wL1wPo"},{"id":"SB-016","n":"코펜하겐 플랭크","ne":"Copenhagen Plank","p":"Stabilize","t":"Stability","tg":"Hip","eq":"Bodyweight","sp":"Controlled","sc":"Accessory","sr":"4x20s","rs":"60s","it":"체중","pt":"내전근 활성","v":"https://youtu.be/aDsaGBnvDQo"},{"id":"SB-017","n":"노르딕 햄스트링","ne":"Nordic Ham Curl","p":"Pull","t":"Stability","tg":"Hamstring","eq":"Bodyweight","sp":"Controlled","sc":"Accessory","sr":"3x6","rs":"90s","it":"체중","pt":"버틸 수 있는 구간까지","v":"https://youtube.com/shorts/GzxNzNRy9T0"},{"id":"SB-018","n":"힙 록 드릴","ne":"Hip Lock Drill","p":"Stabilize","t":"Stability","tg":"Hip","eq":"Bodyweight","sp":"Controlled","sc":"Accessory","sr":"3x10 each","rs":"60s","it":"체중","pt":"천천히 컨트롤","v":"https://youtu.be/Q6lnkOBUalI"},{"id":"SB-019","n":"데드버그 니 프레스","ne":"Dead Bug Knee Press","p":"Stabilize","t":"Stability","tg":"Core","eq":"Bodyweight","sp":"Controlled","sc":"Accessory","sr":"3x15 each","rs":"60s","it":"체중","pt":"무릎-손 접촉 강하게","v":"https://youtube.com/shorts/57fLKi3Ip3M"},{"id":"SB-020","n":"싱글 암 데드 행","ne":"SA Dead Hang","p":"Pull","t":"Stability","tg":"Scapular","eq":"Bodyweight","sp":"Controlled","sc":"Accessory","sr":"3x30s each","rs":"30s","it":"체중","pt":"악력+견갑 전체","v":"https://youtube.com/shorts/eyGnaYx7pn4"},{"id":"MB-001","n":"월드 그레이티스트 스트레칭","ne":"World Greatest Stretch","p":"Mobilize","t":"Mobility","tg":"Hip","eq":"Bodyweight","sp":"Controlled","sc":"Warmup","sr":"2x10 each","rs":"30s","it":"체중","pt":"각 포지션 2초, 흉추 회전","v":"https://youtu.be/-CiWQ2IvY34"},{"id":"MB-002","n":"90/90 힙 스위치","ne":"90/90 Hip Switch","p":"Mobilize","t":"Mobility","tg":"Hip","eq":"Bodyweight","sp":"Controlled","sc":"Warmup","sr":"2x12","rs":"30s","it":"체중","pt":"척추 중립, 골반만 회전","v":"https://youtube.com/shorts/9nhhZIpIZ7A"},{"id":"MB-003","n":"스파이더맨 런지 로테이션","ne":"Spiderman Lunge Rot","p":"Mobilize","t":"Mobility","tg":"Hip","eq":"Bodyweight","sp":"Controlled","sc":"Warmup","sr":"2x10 each","rs":"30s","it":"체중","pt":"딥 런지 흉추 회전","v":"https://youtube.com/shorts/OTpfhOmmXkg"},{"id":"MB-004","n":"힙 CARs","ne":"Hip CARs","p":"Mobilize","t":"Mobility","tg":"Hip","eq":"Bodyweight","sp":"Controlled","sc":"Warmup","sr":"2x10 each","rs":"30s","it":"체중","pt":"최대 ROM, 골반 고정","v":"https://youtube.com/shorts/7aFRBhdkQwo"},{"id":"MB-005","n":"숄더 CARs","ne":"Shoulder CARs","p":"Mobilize","t":"Mobility","tg":"Shoulder","eq":"Bodyweight","sp":"Controlled","sc":"Warmup","sr":"2x5 each","rs":"30s","it":"체중","pt":"최대 ROM, 보상 없이","v":""},{"id":"MB-006","n":"흉추 로테이션","ne":"Thoracic Open Book","p":"Rotation","t":"Mobility","tg":"Shoulder","eq":"Bodyweight","sp":"Controlled","sc":"Warmup","sr":"2x12 each","rs":"30s","it":"체중","pt":"사이드라잉, 시선 손 따라","v":"https://www.youtube.com/watch?v=peeW19ofFUg"},{"id":"MB-007","n":"코사크 스쿼트","ne":"Cossack Squat","p":"Squat","t":"Mobility","tg":"Hip","eq":"Bodyweight","sp":"Controlled","sc":"Warmup","sr":"2x12 each","rs":"30s","it":"체중","pt":"한쪽 완전 신전, 체중 이동","v":"https://youtube.com/shorts/MJvazUpmdZU"},{"id":"MB-008","n":"힙 다이나믹 스트레칭","ne":"Hip Dynamic Stretch","p":"Mobilize","t":"Mobility","tg":"Hip","eq":"Bodyweight","sp":"Controlled","sc":"Warmup","sr":"2x6 each","rs":"30s","it":"체중","pt":"동적 고관절 가동범위","v":"https://www.youtube.com/watch?v=tsGPYSQbZx4"},{"id":"MB-009","n":"다이나믹 레그 스윙","ne":"Dynamic Leg Swing","p":"Mobilize","t":"Mobility","tg":"Hip","eq":"Bodyweight","sp":"Controlled","sc":"Warmup","sr":"2x15 each","rs":"30s","it":"체중","pt":"전후좌우, 골반 안정","v":"https://youtube.com/shorts/3l31E2cMGMk"},{"id":"MB-010","n":"크로스 런지","ne":"Cross Lunge","p":"Lunge","t":"Mobility","tg":"Hip","eq":"Bodyweight","sp":"Controlled","sc":"Warmup","sr":"3x12","rs":"30s","it":"체중","pt":"왕복 1회, 내전 스트레치","v":"https://youtube.com/shorts/1Ge2t1-KqeU"},{"id":"MB-011","n":"힙 로테이션 드릴","ne":"Hip Rotation Drill","p":"Mobilize","t":"Mobility","tg":"Hip","eq":"Bodyweight","sp":"Controlled","sc":"Warmup","sr":"2x8 each","rs":"30s","it":"체중","pt":"폼롤러, 고관절 회전","v":"https://youtube.com/shorts/C4MDREc9ERg"},{"id":"MB-012","n":"프레이어 스트레칭","ne":"Prayer Stretch","p":"Mobilize","t":"Mobility","tg":"Back","eq":"Bodyweight","sp":"Controlled","sc":"Warmup","sr":"2x10","rs":"30s","it":"체중","pt":"등 바닥 쪽 누르기","v":"https://youtu.be/5aac9TULxrM"},{"id":"MB-013","n":"흉추 캔 오프너","ne":"Thoracic Can Opener","p":"Mobilize","t":"Mobility","tg":"Shoulder","eq":"Bodyweight","sp":"Controlled","sc":"Warmup","sr":"2x10","rs":"30s","it":"체중","pt":"흉추 가동성 확보","v":"https://youtube.com/shorts/x_k8RchSpnA"},{"id":"MB-014","n":"밴드 숄더 디스로케이션","ne":"Band Shoulder Dislocate","p":"Mobilize","t":"Mobility","tg":"Shoulder","eq":"Band","sp":"Controlled","sc":"Warmup","sr":"2x10","rs":"30s","it":"가볍게","pt":"넓은 그립, 천천히 넘기기","v":""},{"id":"MB-015","n":"월 앵클 모빌리티","ne":"Wall Ankle Mobility","p":"Mobilize","t":"Mobility","tg":"Calf","eq":"Bodyweight","sp":"Controlled","sc":"Warmup","sr":"2x10 each","rs":"30s","it":"체중","pt":"무릎 벽 터치, 뒤꿈치 안 뜨게","v":""},{"id":"TR-001","n":"케이블 리프트","ne":"Cable Lift","p":"Rotation","t":"Transfer","tg":"Core","eq":"Cable","sp":"Controlled","sc":"Main","sr":"3x10 each","rs":"60s","it":"60-70%","pt":"저→고, 하체 주도","v":""},{"id":"TR-002","n":"케이블 찹","ne":"Cable Chop","p":"Rotation","t":"Transfer","tg":"Core","eq":"Cable","sp":"Controlled","sc":"Main","sr":"3x10 each","rs":"60s","it":"60-70%","pt":"고→저, 코어 컨트롤","v":""},{"id":"TR-003","n":"런드마인 프레스","ne":"Landmine Press","p":"Push","t":"Transfer","tg":"Shoulder","eq":"Barbell","sp":"Fast","sc":"Main","sr":"4x8","rs":"90s","it":"코어 흔들림 없이","pt":"대각선 빠르게 밀기","v":"https://youtu.be/8xQQnsjzLhs"},{"id":"TR-004","n":"런드마인 로테이션","ne":"Landmine Rotation","p":"Rotation","t":"Transfer","tg":"Core","eq":"Barbell","sp":"Controlled","sc":"Main","sr":"3x8 each","rs":"60s","it":"가볍게","pt":"하체 고정, 상체 회전","v":""},{"id":"TR-005","n":"싱글레그 RDL","ne":"Single Leg RDL","p":"Hinge","t":"Transfer","tg":"Hamstring","eq":"Dumbbell","sp":"Controlled","sc":"Main","sr":"3x8 each","rs":"90s","it":"60-70%","pt":"골반 레벨, T자","v":"https://www.youtube.com/watch?v=2SHsk9AzdjA"},{"id":"TR-006","n":"슬레드 푸시","ne":"Sled Push","p":"Push","t":"Transfer","tg":"Quad","eq":"Sled","sp":"Fast","sc":"Main","sr":"4x20m","rs":"90s","it":"무거움","pt":"45도, 발가락 밀기","v":""},{"id":"TR-007","n":"SA 케이블 로우 로테이션","ne":"SA Cable Row Rot","p":"Pull","t":"Transfer","tg":"Back","eq":"Cable","sp":"Controlled","sc":"Main","sr":"3x10 each","rs":"60s","it":"60-70%","pt":"당기면서 흉추 회전","v":""},{"id":"TR-008","n":"덤벨 스텝업 드라이브","ne":"DB Step-up Drive","p":"Lunge","t":"Transfer","tg":"Quad","eq":"Dumbbell","sp":"Fast","sc":"Main","sr":"3x6 each","rs":"60s","it":"70-80%","pt":"앞발로 빠르게","v":"https://youtube.com/shorts/P9gOoqgHpEE"},{"id":"TR-009","n":"데드버그 로우","ne":"Dead Bug Row","p":"Pull","t":"Transfer","tg":"Core","eq":"Dumbbell","sp":"Controlled","sc":"Main","sr":"3x10 each","rs":"60s","it":"체중 20-30%","pt":"몸 일직선(매우 중요)","v":"https://youtu.be/zYHZm9_HJsw"},{"id":"TR-010","n":"플로어 데드버그 프레스","ne":"Floor Dead Bug Press","p":"Push","t":"Transfer","tg":"Chest","eq":"Dumbbell","sp":"Controlled","sc":"Main","sr":"4x8","rs":"60s","it":"체중 30-50%","pt":"견갑모으기, 코어 힘","v":"https://youtube.com/shorts/JUBxILwr3RU"},{"id":"TR-011","n":"닐링 케이블 로우","ne":"Kneeling Cable Row","p":"Pull","t":"Transfer","tg":"Back","eq":"Cable","sp":"Controlled","sc":"Main","sr":"3x12","rs":"60s","it":"체중 20-30%","pt":"닐링 코어+로우","v":"https://youtube.com/shorts/iBC4Xo1SiF0"},{"id":"TR-012","n":"덤벨 푸쉬업 & 로우","ne":"DB Push-up & Row","p":"Pull","t":"Transfer","tg":"Back","eq":"Dumbbell","sp":"Controlled","sc":"Main","sr":"3x12 each","rs":"60s","it":"체중 15-30%","pt":"푸시업 후 로우, 골반 안정","v":"https://youtube.com/shorts/4E-tCquxn_4"},{"id":"TR-013","n":"바벨 스내치 그립 RDL","ne":"Snatch Grip RDL","p":"Hinge","t":"Transfer","tg":"Hamstring","eq":"Barbell","sp":"Fast","sc":"Main","sr":"4x8","rs":"90s","it":"1RM 70-80%","pt":"어깨 두배, 탄성있게","v":"https://youtu.be/5S8dfigc3iE"},{"id":"TR-014","n":"밴드 리시스티드 스프린트","ne":"Band Resisted Sprint","p":"Plyo","t":"Transfer","tg":"Quad","eq":"Band","sp":"Fast","sc":"Main","sr":"4x15m","rs":"120s","it":"체중+밴드","pt":"전경, 폭발적 드라이브","v":""},{"id":"TR-015","n":"하프닐링 케이블 프레스","ne":"HK Cable Press","p":"Push","t":"Transfer","tg":"Chest","eq":"Cable","sp":"Controlled","sc":"Main","sr":"3x10 each","rs":"60s","it":"60-70%","pt":"하프닐링 코어+프레스","v":""},{"id":"SC-001","n":"뎁스 점프","ne":"Depth Jump","p":"Plyo","t":"SSC","tg":"Quad","eq":"Box","sp":"Fast","sc":"Main","sr":"3x5","rs":"150s","it":"체중","pt":"최소 접지, 즉시 최대 점프","v":""},{"id":"SC-002","n":"허들 점프","ne":"Hurdle Jump","p":"Plyo","t":"SSC","tg":"Quad","eq":"Hurdle","sp":"Fast","sc":"Main","sr":"3x5","rs":"120s","it":"체중","pt":"연속, 착지 즉시 다음","v":""},{"id":"SC-003","n":"스케이터 점프","ne":"Skater Jump","p":"Plyo","t":"SSC","tg":"Hip","eq":"Bodyweight","sp":"Fast","sc":"Main","sr":"3x6 each","rs":"90s","it":"체중","pt":"측면+빠른 방향 전환","v":""},{"id":"SC-004","n":"앵클 홉","ne":"Ankle Hop Pogo","p":"Plyo","t":"SSC","tg":"Calf","eq":"Bodyweight","sp":"Fast","sc":"Warmup","sr":"2x10","rs":"60s","it":"체중","pt":"발목만, 무릎 최소","v":"https://youtube.com/shorts/xtSq12yoCcE"},{"id":"SC-005","n":"턱 점프","ne":"Tuck Jump","p":"Plyo","t":"SSC","tg":"Quad","eq":"Bodyweight","sp":"Fast","sc":"Main","sr":"3x6","rs":"120s","it":"체중","pt":"무릎 가슴으로, 소프트 착지","v":""},{"id":"SC-006","n":"싱글레그 박스 점프","ne":"SL Box Jump","p":"Plyo","t":"SSC","tg":"Quad","eq":"Box","sp":"Fast","sc":"Main","sr":"4x5 each","rs":"120s","it":"체중","pt":"한발→안정 착지","v":"https://youtube.com/shorts/XAI71pCogF4"},{"id":"SC-007","n":"덤벨 싱글레그 박스 점프","ne":"DB SL Box Jump","p":"Plyo","t":"SSC","tg":"Quad","eq":"Dumbbell","sp":"Fast","sc":"Main","sr":"2x8 each","rs":"120s","it":"5-7kg","pt":"한발→안정 착지","v":"https://youtu.be/4iSbq47jBO0"},{"id":"SC-008","n":"플레이트 스케이터 점프","ne":"Plate Skater Jump","p":"Plyo","t":"SSC","tg":"Hip","eq":"Plate","sp":"Fast","sc":"Main","sr":"3x10","rs":"90s","it":"10-20kg","pt":"좌우 전환, 착지 컨트롤","v":"https://youtube.com/shorts/EhUF40vtegk"},{"id":"SC-009","n":"스플릿 점프","ne":"Split Jump","p":"Plyo","t":"SSC","tg":"Quad","eq":"Bodyweight","sp":"Fast","sc":"Main","sr":"3x8 each","rs":"75s","it":"체중","pt":"착지 즉시 폭발적 점프","v":"https://youtu.be/nN-fkSOL1ds"},{"id":"SC-010","n":"클랩 푸시업","ne":"Clap Push-up","p":"Push","t":"SSC","tg":"Chest","eq":"Bodyweight","sp":"Fast","sc":"Main","sr":"3x5","rs":"120s","it":"체중","pt":"최대 높이, 착지 흡수","v":""},{"id":"SC-011","n":"브로드 점프","ne":"Broad Jump Stick","p":"Plyo","t":"SSC","tg":"Quad","eq":"Bodyweight","sp":"Fast","sc":"Main","sr":"4x8","rs":"90s","it":"체중","pt":"뒷꿈치 들기, 무릎 평행","v":"https://youtube.com/shorts/Ja89wctAKdA"},{"id":"SC-012","n":"덤벨 스플릿 점프 스텝스루","ne":"DB Split Jump Step","p":"Plyo","t":"SSC","tg":"Quad","eq":"Dumbbell","sp":"Fast","sc":"Main","sr":"4x6 each","rs":"90s","it":"체중 15-30%","pt":"끊어서, 자세+빠른 점프","v":"https://youtube.com/shorts/l3zpYh46GBg"},{"id":"SC-013","n":"AEL 스쿼트 점프","ne":"AEL Squat Jump","p":"Plyo","t":"SSC","tg":"Quad","eq":"Dumbbell","sp":"Fast","sc":"Main","sr":"4x6 each","rs":"90s","it":"체중 20-30%","pt":"빠르게 내려갔다 올라가기","v":"https://youtu.be/04AlONx9bTM"},{"id":"SC-014","n":"닐링 점프","ne":"Kneeling Jump","p":"Plyo","t":"SSC","tg":"Hip","eq":"Bodyweight","sp":"Fast","sc":"Main","sr":"2x12","rs":"90s","it":"체중","pt":"폭발적 힙 익스텐션","v":"https://youtube.com/shorts/NICozKyEVjY"},{"id":"SC-015","n":"플라이오 스텝업","ne":"Plyo Step-up","p":"Plyo","t":"SSC","tg":"Quad","eq":"Box","sp":"Fast","sc":"Main","sr":"3x5 each","rs":"90s","it":"체중","pt":"다리 교대, 폭발적","v":""},{"id":"WU-001","n":"밴드 외회전+프레스","ne":"Band ER + Press","p":"Stabilize","t":"Warmup","tg":"Shoulder","eq":"Band","sp":"Controlled","sc":"Warmup","sr":"2x20","rs":"30s","it":"아주 가볍게","pt":"아주 천천히","v":"https://youtube.com/shorts/8WvS3wUPMk8"},{"id":"WU-002","n":"밴드 어깨 활성화","ne":"Band Shoulder Act","p":"Stabilize","t":"Warmup","tg":"Shoulder","eq":"Band","sp":"Controlled","sc":"Warmup","sr":"2x12 each","rs":"30s","it":"가볍게","pt":"각도별 활성화","v":"https://youtube.com/shorts/MDHUJR86A8I"},{"id":"WU-003","n":"암 스윙 드릴","ne":"Arm Swing Drill","p":"Mobilize","t":"Warmup","tg":"Shoulder","eq":"Bodyweight","sp":"Fast","sc":"Warmup","sr":"2x10s","rs":"30s","it":"체중","pt":"상체 회전 연동","v":"https://youtube.com/shorts/ZeLS3ASvMDU"},{"id":"WU-004","n":"하프닐링 코어 브레이싱","ne":"HK Core Bracing","p":"Stabilize","t":"Warmup","tg":"Core","eq":"Band","sp":"Controlled","sc":"Warmup","sr":"2x30s","rs":"30s","it":"체중","pt":"코어 단단히","v":"https://youtube.com/shorts/WziXrwOt6eQ"},{"id":"WU-005","n":"스캡션 레이즈","ne":"Scaption Raise","p":"Push","t":"Warmup","tg":"Shoulder","eq":"Dumbbell","sp":"Controlled","sc":"Warmup","sr":"5x20","rs":"30s","it":"아주 가볍게","pt":"견갑면 들어올리기","v":"https://youtube.com/shorts/TPXDhl9kTuI"},{"id":"WU-006","n":"프론 Y 레이즈","ne":"Prone Y Raise","p":"Pull","t":"Warmup","tg":"Shoulder","eq":"Dumbbell","sp":"Controlled","sc":"Warmup","sr":"4x15","rs":"30s","it":"아주 가볍게","pt":"엎드려 Y자","v":"https://youtube.com/shorts/qLN4BoglYv4"},{"id":"WU-007","n":"프론 스위머","ne":"Prone Swimmer","p":"Mobilize","t":"Warmup","tg":"Back","eq":"Bodyweight","sp":"Controlled","sc":"Warmup","sr":"2x15","rs":"30s","it":"체중","pt":"엎드려 팔 원","v":"https://youtube.com/shorts/NrHBXIV4nls"},{"id":"WU-008","n":"프론 스노우 엔젤","ne":"Prone Snow Angel","p":"Mobilize","t":"Warmup","tg":"Back","eq":"Bodyweight","sp":"Controlled","sc":"Warmup","sr":"2x12","rs":"30s","it":"체중","pt":"엎드려 눈천사","v":"https://youtu.be/vSou6Vup5W8"},{"id":"WU-009","n":"힙 힌지 드릴","ne":"DB Hip Hinge Drill","p":"Hinge","t":"Warmup","tg":"Glute","eq":"Dumbbell","sp":"Controlled","sc":"Warmup","sr":"2x8","rs":"30s","it":"자극 느낄 정도","pt":"힙 힌지 활성화","v":"https://youtube.com/shorts/5qhy8-pX8Yw"},{"id":"WU-010","n":"고블릿 스쿼트 모빌리티","ne":"Goblet Squat Mob","p":"Squat","t":"Warmup","tg":"Hip","eq":"Dumbbell","sp":"Controlled","sc":"Warmup","sr":"2x20s","rs":"30s","it":"가볍게","pt":"좌우 체중 이동","v":"https://youtube.com/shorts/WJTQr5IZUgk"},{"id":"AD-001","n":"B 스탠스 힙 쓰러스트","ne":"B-Stance Hip Thrust","p":"Hinge","t":"Strength","tg":"Glute","eq":"Barbell","sp":"Controlled","sc":"Main","sr":"3x10","rs":"90s","it":"체중 이상","pt":"두 발 모두 힘쓰기","v":"https://youtube.com/shorts/3PL47HwfJ6k"},{"id":"AD-002","n":"덤벨 런지 드라이브","ne":"DB Lunge Drive","p":"Lunge","t":"Power","tg":"Quad","eq":"Dumbbell","sp":"Fast","sc":"Main","sr":"3x12","rs":"60s","it":"70-80%","pt":"하체→무릎 들기","v":"https://youtube.com/shorts/6vcsnby-RKg"},{"id":"AD-003","n":"덤벨 파워 로우","ne":"DB Power Row","p":"Pull","t":"Power","tg":"Back","eq":"Dumbbell","sp":"Fast","sc":"Main","sr":"3x8","rs":"60s","it":"8회 가능 무게","pt":"빠르게 당기기, 버티기","v":"https://youtube.com/shorts/w9TsaN1A_30"},{"id":"AD-004","n":"덤벨 클린 하이풀","ne":"DB Clean High Pull","p":"Pull","t":"Power","tg":"Full Body","eq":"Dumbbell","sp":"Fast","sc":"Main","sr":"4x8","rs":"60s","it":"중간무게","pt":"팔꿈치 위로 집중","v":"https://youtube.com/shorts/kPxws4dzhi0"},{"id":"AD-005","n":"인버티드 로우","ne":"Inverted Row","p":"Pull","t":"Strength","tg":"Back","eq":"Bodyweight","sp":"Controlled","sc":"Main","sr":"3x12","rs":"60s","it":"체중","pt":"견갑 수축","v":"https://youtube.com/shorts/vZy_Eu_Z0WA"},{"id":"AD-006","n":"와이드 마운틴 클라이머","ne":"Wide Mt Climber","p":"Stabilize","t":"Stability","tg":"Core","eq":"Bodyweight","sp":"Fast","sc":"Accessory","sr":"4x20s","rs":"60s","it":"체중","pt":"넓은 보폭, 코어","v":"https://youtu.be/g4p-lCnfdNU"},{"id":"AD-007","n":"덤벨 워킹 런지","ne":"DB Walking Lunge","p":"Lunge","t":"Strength","tg":"Quad","eq":"Dumbbell","sp":"Controlled","sc":"Main","sr":"4x20걸음","rs":"60s","it":"70-80%","pt":"보폭 일정, 상체 직립","v":"https://youtube.com/shorts/_VijHJe9-UU"},{"id":"AD-008","n":"싱글레그 스텝다운","ne":"SL Step-down","p":"Lunge","t":"Stability","tg":"Quad","eq":"Dumbbell","sp":"Controlled","sc":"Accessory","sr":"3x12 each","rs":"60s","it":"무게 추가","pt":"천천히, 무릎 정렬","v":"https://youtube.com/shorts/IQIUv3f-qmc"},{"id":"AD-009","n":"덤벨 더블 스내치","ne":"DB Double Snatch","p":"Hinge","t":"Power","tg":"Full Body","eq":"Dumbbell","sp":"Fast","sc":"Main","sr":"4x12","rs":"60s","it":"15kg+","pt":"폭발적 힙→오버헤드","v":"https://youtube.com/shorts/Mw3n2HiB89k"},{"id":"AD-010","n":"덤벨 클린","ne":"DB Clean","p":"Hinge","t":"Power","tg":"Full Body","eq":"Dumbbell","sp":"Fast","sc":"Main","sr":"5x8","rs":"90s","it":"체중 20-30%","pt":"힙 드라이브 클린","v":"https://youtu.be/uCeNCZFk34c"},{"id":"AD-011","n":"세라토스 월 슬라이드","ne":"Serratus Wall Slide","p":"Stabilize","t":"Stability","tg":"Scapular","eq":"Bodyweight","sp":"Controlled","sc":"Accessory","sr":"4x15","rs":"30s","it":"체중","pt":"벽에 팔, 견갑 전인","v":"https://youtube.com/shorts/IMRigdBilBg"},{"id":"AD-012","n":"월 드릴 스위치","ne":"Wall Drill Switch","p":"Plyo","t":"Power","tg":"Quad","eq":"Bodyweight","sp":"Fast","sc":"Main","sr":"4x8 왕복","rs":"60s","it":"체중","pt":"일직선, 뒷꿈치 들기","v":"https://youtube.com/shorts/0okNjOq6AB4"},{"id":"AD-013","n":"덤벨 클린 & 프레스","ne":"DB Clean & Press","p":"Hinge","t":"Power","tg":"Full Body","eq":"Dumbbell","sp":"Fast","sc":"Main","sr":"3x12","rs":"60s","it":"코어힘 들어갈 정도","pt":"클린→빠르게 프레스","v":"https://youtube.com/shorts/HGYMvywau_0"},{"id":"AD-014","n":"스위밍 크런치","ne":"Swimming Crunch","p":"Stabilize","t":"Stability","tg":"Core","eq":"Bodyweight","sp":"Controlled","sc":"Accessory","sr":"4x15 each","rs":"60s","it":"체중","pt":"대각선 교차, 코어","v":"https://youtube.com/shorts/vJAqL3WFWs0"},{"id":"AD-015","n":"덤벨 레터럴 런지","ne":"DB Lateral Lunge","p":"Lunge","t":"Strength","tg":"Hip","eq":"Dumbbell","sp":"Controlled","sc":"Main","sr":"4x10 each","rs":"60s","it":"15-20kg","pt":"발목-무릎-엉덩이 일직선","v":"https://youtube.com/shorts/0QT37ft-q20"},{"id":"AD-016","n":"바벨 푸시 프레스","ne":"Barbell Push Press","p":"Push","t":"Power","tg":"Shoulder","eq":"Barbell","sp":"Fast","sc":"Main","sr":"4x(10/8/6/5)","rs":"90s","it":"피라미드","pt":"무게↑ 갯수↓","v":"https://youtube.com/shorts/Z3oL-wZmDIM"},{"id":"AD-017","n":"싱글암 덤벨 프레스","ne":"SA DB Press","p":"Push","t":"Strength","tg":"Chest","eq":"Dumbbell","sp":"Controlled","sc":"Main","sr":"4x8 each","rs":"60s","it":"체중 20-30%","pt":"한쪽+코어 안정","v":"https://youtube.com/shorts/Cs2uNF-jW5s"},{"id":"AD-018","n":"싱글암 숄더프레스 런지","ne":"SA SP Lunge Stance","p":"Push","t":"Strength","tg":"Shoulder","eq":"Dumbbell","sp":"Controlled","sc":"Main","sr":"2x10","rs":"60s","it":"체중 15-30%","pt":"런지 코어 활성","v":"https://youtube.com/shorts/Roe_glAcAN8"},{"id":"AD-019","n":"래터럴 스텝다운","ne":"Lateral Step-down","p":"Lunge","t":"Stability","tg":"Quad","eq":"Dumbbell","sp":"Controlled","sc":"Accessory","sr":"3x12 each","rs":"60s","it":"20-25kg","pt":"정강이-무릎, 천천히","v":"https://youtu.be/l7mXgw_NtkQ"},{"id":"AD-020","n":"사이드 플랭크 오블리크 크런치","ne":"SP Oblique Crunch","p":"Stabilize","t":"Stability","tg":"Core","eq":"Bodyweight","sp":"Controlled","sc":"Accessory","sr":"3x15 each","rs":"60s","it":"체중","pt":"사이드+크런치","v":"https://youtube.com/shorts/rDcXbcYee4w"},{"id":"AD-021","n":"싱글레그 카프레이즈","ne":"SL Calf Raise","p":"Push","t":"Hypertrophy","tg":"Calf","eq":"Plate","sp":"Controlled","sc":"Main","sr":"4x15 each","rs":"60s","it":"체중 30-50%","pt":"최대 ROM, 3초 홀드","v":"https://youtube.com/shorts/h0A83mYi1sA"},{"id":"AD-022","n":"하프닐링 로테이션","ne":"HK Rotation Plate","p":"Rotation","t":"Mobility","tg":"Core","eq":"Plate","sp":"Controlled","sc":"Warmup","sr":"2x12 each","rs":"30s","it":"가볍게","pt":"하프닐링 흉추 회전","v":"https://youtube.com/shorts/y4X2RE403eQ"},{"id":"AD-023","n":"덤벨 스플릿 스쿼트","ne":"DB Split Squat","p":"Lunge","t":"Strength","tg":"Quad","eq":"Dumbbell","sp":"Controlled","sc":"Main","sr":"4x10 each","rs":"60s","it":"양손합 체중45-55%","pt":"앞발 중심, 허리 펴기","v":"https://youtube.com/shorts/_HukgYk7lTw"},{"id":"AD-024","n":"싱글레그 햄스트링 브릿지","ne":"SL Ham Bridge","p":"Hinge","t":"Stability","tg":"Hamstring","eq":"Bodyweight","sp":"Controlled","sc":"Accessory","sr":"3x10 each","rs":"60s","it":"체중","pt":"싱글레그 햄스트링","v":"https://youtube.com/shorts/Cpc9qjU8tEY"},{"id":"AD-025","n":"덤벨 카프레이즈","ne":"DB Calf Raise","p":"Push","t":"Hypertrophy","tg":"Calf","eq":"Dumbbell","sp":"Steady","sc":"Main","sr":"3x20 each","rs":"30s","it":"체중 50%","pt":"양쪽 번갈아, 최대 ROM","v":"https://youtube.com/shorts/Bfl5du8ehao"}];
-const LIBRARY = RAW_LIB.map(r => ({
+let LIBRARY = RAW_LIB.map(r => ({
   id:r.id, name:r.n, nameEn:r.ne, pattern:r.p, type:r.t, target:r.tg,
   equipment:r.eq, speed:r.sp, section:r.sc, setsReps:r.sr, rest:r.rs,
   intensity:r.it, point:r.pt, video:r.v
 }));
+
+// ─── Google Sheets CSV에서 운동 라이브러리 실시간 로드 ───
+const LIBRARY_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTtzTF4uESywdWzc3THSCPGnAFP3WCzTpwgaIHS6Xy7kFuuZgTSzwZ4xPWuvhGFdOMHhwF8yrnI3n-R/pub?gid=0&single=true&output=csv';
+
+function parseCSV(text) {
+  const lines = [];
+  let current = '';
+  let inQuotes = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (ch === '"') { inQuotes = !inQuotes; }
+    else if (ch === '\n' && !inQuotes) { lines.push(current); current = ''; }
+    else { current += ch; }
+  }
+  if (current.trim()) lines.push(current);
+
+  if (lines.length < 2) return null;
+  const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
+
+  const findCol = (keywords) => {
+    for (const kw of keywords) {
+      const idx = headers.findIndex(h => h.toLowerCase().includes(kw.toLowerCase()));
+      if (idx >= 0) return idx;
+    }
+    return -1;
+  };
+
+  // 컬럼 매핑 (다양한 헤더명 지원)
+  const cols = {
+    id: findCol(['ID', 'id']),
+    name: findCol(['운동이름', '이름', 'name']),
+    nameEn: findCol(['영문이름', '영문', 'english', 'nameEn']),
+    pattern: findCol(['움직임패턴', '패턴', 'pattern']),
+    type: findCol(['운동유형', '유형', 'type']),
+    target: findCol(['타겟근육', '타겟', 'target']),
+    equipment: findCol(['사용기구', '기구', 'equipment']),
+    speed: findCol(['운동속도', '속도', 'speed']),
+    section: findCol(['세션구간', '구간', 'section']),
+    setsReps: findCol(['세트x랩', '세트', 'sets', 'setsReps']),
+    rest: findCol(['쉬는시간', '휴식', 'rest']),
+    intensity: findCol(['추천강도', '강도', 'intensity']),
+    point: findCol(['코칭포인트', '코칭', 'point']),
+    video: findCol(['영상링크', '영상', '링크', 'video', 'link']),
+  };
+
+  const result = [];
+  for (let i = 1; i < lines.length; i++) {
+    const vals = [];
+    let cur = '', inQ = false;
+    for (let j = 0; j < lines[i].length; j++) {
+      const c = lines[i][j];
+      if (c === '"') { inQ = !inQ; }
+      else if (c === ',' && !inQ) { vals.push(cur.trim()); cur = ''; }
+      else { cur += c; }
+    }
+    vals.push(cur.trim());
+
+    const g = (key) => (cols[key] >= 0 && cols[key] < vals.length) ? vals[cols[key]].replace(/^"|"$/g, '') : '';
+    const id = g('id');
+    if (!id) continue;
+
+    result.push({
+      id, name: g('name'), nameEn: g('nameEn'), pattern: g('pattern'),
+      type: g('type'), target: g('target'), equipment: g('equipment'),
+      speed: g('speed'), section: g('section'), setsReps: g('setsReps'),
+      rest: g('rest'), intensity: g('intensity'), point: g('point'), video: g('video')
+    });
+  }
+  return result.length > 0 ? result : null;
+}
 
 // ─── RESPONSIVE HOOK ───
 function useWindowSize() {
@@ -75,24 +145,80 @@ const getUpperTypes = (wk, cid) => {
   return wk%2===1?["Power"]:["Hypertrophy"];
 };
 
-// ─── ENGINE ───
+// ─── ENGINE (v2 — 다양성 강화) ───
 function recommend(concept, weekNum, athleteEquip, lastExIds=[], counts={warmup:3,main:5,accessory:3}) {
   const eqS = new Set(athleteEquip);
   const hasEq = (ex) => ex.equipment.split(",").map(s=>s.trim()).every(e=>eqS.has(e));
   const mAny = (val, t) => val.split(",").map(s=>s.trim()).some(v=>t.includes(v));
-  const wuP = LIBRARY.filter(e=>e.section==="Warmup"&&mAny(e.target,concept.warmupTargets)&&hasEq(e)).sort(()=>Math.random()-0.5);
-  const mnP = LIBRARY.filter(e=>e.section==="Main"&&mAny(e.target,concept.mainTargets)&&hasEq(e)).map(e=>{
-    let sc=0; const ut=getUpperTypes(weekNum,concept.id); const et=concept.mainTypes.length>0?concept.mainTypes:(ut||[]);
-    if(et.length>0&&et.includes(e.type)) sc+=20; if(concept.mainPatterns.length>0&&mAny(e.pattern,concept.mainPatterns)) sc+=20;
-    if(lastExIds.includes(e.id)) sc-=30; sc+=Math.random()*10; return{...e,_sc:sc};
+
+  // ── Warmup: 타겟 매칭 + 완전 셔플 ──
+  const wuPool = LIBRARY.filter(e=>e.section==="Warmup"&&mAny(e.target,concept.warmupTargets)&&hasEq(e));
+  shuffle(wuPool);
+
+  // ── Main: 폭넓은 풀 + 스마트 점수 ──
+  const mnPool = LIBRARY.filter(e=>e.section==="Main"&&mAny(e.target,concept.mainTargets)&&hasEq(e)).map(e=>{
+    let sc=0;
+    const ut=getUpperTypes(weekNum,concept.id);
+    const et=concept.mainTypes.length>0?concept.mainTypes:(ut||[]);
+
+    // 유형 매칭 (Power/Strength/Hypertrophy + Transfer도 보너스)
+    if(et.length>0&&et.includes(e.type)) sc+=15;
+    if(e.type==="Transfer") sc+=8; // Transfer는 항상 약간의 보너스
+    // 패턴 매칭
+    if(concept.mainPatterns.length>0&&mAny(e.pattern,concept.mainPatterns)) sc+=15;
+    // 최근 사용 패널티 (직전 세션 운동은 크게 감점)
+    if(lastExIds.includes(e.id)) sc-=50;
+    // 랜덤 (핵심! 범위를 넓혀서 다양성 확보)
+    sc+=Math.random()*25;
+
+    return{...e,_sc:sc};
   }).sort((a,b)=>b._sc-a._sc);
-  const acP = LIBRARY.filter(e=>e.section==="Accessory"&&hasEq(e)).sort(()=>Math.random()-0.5);
-  const wm=WEEK_MATRIX[weekNum]||WEEK_MATRIX[1]; let mSel=[]; const used=new Set();
-  wm.main.forEach(sl=>{let n=sl.count; for(const ex of mnP){if(n<=0)break;if(used.has(ex.id))continue;if(ex.type===sl.type){mSel.push(ex);used.add(ex.id);n--;}} if(n>0)for(const ex of mnP){if(n<=0)break;if(used.has(ex.id))continue;mSel.push(ex);used.add(ex.id);n--;}});
-  const tO={Power:0,SSC:0,Strength:1,Transfer:1,Hypertrophy:2}; mSel.sort((a,b)=>(tO[a.type]??1)-(tO[b.type]??1));
+
+  // ── Accessory: 완전 셔플 + 최근 사용 제외 ──
+  const acPool = LIBRARY.filter(e=>e.section==="Accessory"&&hasEq(e)&&!lastExIds.includes(e.id));
+  shuffle(acPool);
+  // 풀이 부족하면 최근 사용한 것도 포함
+  if(acPool.length<counts.accessory){
+    const extra=LIBRARY.filter(e=>e.section==="Accessory"&&hasEq(e)&&lastExIds.includes(e.id));
+    shuffle(extra);
+    acPool.push(...extra);
+  }
+
+  // ── Main 운동 선택: Week 매트릭스 기반 ──
+  const wm=WEEK_MATRIX[weekNum]||WEEK_MATRIX[1];
+  let mSel=[]; const used=new Set();
+
+  // 1차: 유형별 할당량 채우기
+  wm.main.forEach(sl=>{
+    let n=sl.count;
+    for(const ex of mnPool){
+      if(n<=0)break;
+      if(used.has(ex.id))continue;
+      // 정확한 유형 매칭 또는 Transfer(범용)
+      if(ex.type===sl.type||(sl.type==="Strength"&&ex.type==="Transfer")){
+        mSel.push(ex);used.add(ex.id);n--;
+      }
+    }
+    // 2차: 할당량 못 채우면 아무거나
+    if(n>0){
+      for(const ex of mnPool){
+        if(n<=0)break;
+        if(used.has(ex.id))continue;
+        mSel.push(ex);used.add(ex.id);n--;
+      }
+    }
+  });
+
+  // 운동 순서: Power/SSC → Strength/Transfer → Hypertrophy
+  const tO={Power:0,SSC:0,Strength:1,Transfer:1,Hypertrophy:2};
+  mSel.sort((a,b)=>(tO[a.type]??1)-(tO[b.type]??1));
+
   const toE=(e)=>({id:e.id,name:e.name,nameEn:e.nameEn||"",type:e.type,pattern:e.pattern,target:e.target,equipment:e.equipment,speed:e.speed,sets:(e.setsReps||"3x10").split("x")[0]||"3",reps:(e.setsReps||"3x10").replace(/^[^x]*x/,"")||"10",rest:e.rest||"60s",intensity:e.intensity||"",point:e.point||"",video:e.video||""});
-  return{warmup:wuP.slice(0,counts.warmup).map(toE),main:mSel.slice(0,counts.main).map(toE),accessory:acP.slice(0,counts.accessory).map(toE)};
+  return{warmup:wuPool.slice(0,counts.warmup).map(toE),main:mSel.slice(0,counts.main).map(toE),accessory:acPool.slice(0,counts.accessory).map(toE)};
 }
+
+// Fisher-Yates 셔플
+function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
 
 function toKakao(ss,name,dayLabel,wk,date){
   let t=`📋 ${name} — ${date}\n${dayLabel} | Week ${wk}\n${"━".repeat(24)}\n\n`;
@@ -145,7 +271,61 @@ export default function App(){
   const [saving,setSaving]=useState(false);
   const [saveMsg,setSaveMsg]=useState("");
   const [loadingAthletes,setLoadingAthletes]=useState(true);
+  const [libCount,setLibCount]=useState(LIBRARY.length);
   const showSave=(msg)=>{setSaveMsg(msg);setTimeout(()=>setSaveMsg(""),2500);};
+
+  // ─── Google Sheets CSV에서 운동 라이브러리 로드 ───
+  useEffect(()=>{
+    fetch(LIBRARY_CSV_URL)
+      .then(res=>res.text())
+      .then(text=>{
+        const parsed=parseCSV(text);
+        if(parsed&&parsed.length>0){
+          LIBRARY=parsed;
+          setLibCount(parsed.length);
+          console.log('[Physical D] 라이브러리 로드 완료:',parsed.length,'개 운동');
+        }
+      })
+      .catch(err=>console.error('라이브러리 CSV 로드 실패 (하드코딩 사용):',err));
+  },[]);
+
+  // ─── 데이터 새로고침 함수 ───
+  const refreshData=async()=>{
+    setSaving(true);setSaveMsg("🔄 데이터 새로고침 중...");
+    try{
+      const [athData,sesData,libRes]=await Promise.all([
+        readSheets('getAthletes'),
+        readSheets('getSessions'),
+        fetch(LIBRARY_CSV_URL).then(r=>r.text()).catch(()=>null)
+      ]);
+      // 라이브러리 새로고침
+      if(libRes){
+        const parsed=parseCSV(libRes);
+        if(parsed&&parsed.length>0){LIBRARY=parsed;setLibCount(parsed.length);}
+      }
+      const mapped=(athData.data||[]).map(a=>({
+        id:a.athleteCode, name:a.name, sport:a.sport, position:a.position,
+        team:a.team||"", height:String(a.height||""), weight:String(a.weight||""),
+        age:String(a.age||""), memo:a.memo||"", equipment:a.equipment||[]
+      }));
+      setAthletes(mapped);
+      const sesMapped=(sesData.data||[]).map(s=>({
+        id:s.sessionId, athleteId:s.athleteCode, athleteName:s.athleteName,
+        athleteSport:"", athletePosition:"",
+        concept:s.dayConcept, weekNum:parseInt(String(s.week).replace(/\D/g,''))||1,
+        date:s.date?String(s.date).substring(0,10):"",
+        session:{
+          warmup:s.exercises.filter(e=>e.section==="Warmup").map(e=>({id:e.exerciseId,name:e.exerciseName,nameEn:"",type:"",pattern:"",target:"",equipment:"",speed:"",sets:String(e.sets||""),reps:String(e.reps||""),rest:"",intensity:String(e.intensity||""),point:"",video:""})),
+          main:s.exercises.filter(e=>e.section==="Main").map(e=>({id:e.exerciseId,name:e.exerciseName,nameEn:"",type:"",pattern:"",target:"",equipment:"",speed:"",sets:String(e.sets||""),reps:String(e.reps||""),rest:"",intensity:String(e.intensity||""),point:"",video:""})),
+          accessory:s.exercises.filter(e=>e.section==="Accessory").map(e=>({id:e.exerciseId,name:e.exerciseName,nameEn:"",type:"",pattern:"",target:"",equipment:"",speed:"",sets:String(e.sets||""),reps:String(e.reps||""),rest:"",intensity:String(e.intensity||""),point:"",video:""})),
+        },
+        feedback:s.feedback&&s.feedback.rpe?{q1:Number(s.feedback.rpe)||5,q2:Number(s.feedback.fatigue)||5,q3:Number(s.feedback.speedPerception)||5,q4:Number(s.feedback.recoveryPrediction)||3,q5area:s.feedback.painArea||"",q5vas:Number(s.feedback.painVAS)||0}:null,
+      }));
+      setHistory(sesMapped);
+      showSave("✅ 새로고침 완료 (운동 "+LIBRARY.length+"개)");
+    }catch(err){showSave("❌ 새로고침 실패");}
+    finally{setSaving(false);}
+  };
 
   // ─── Google Sheets에서 선수 목록 로드 ───
   useEffect(()=>{
@@ -191,6 +371,7 @@ export default function App(){
   const [counts,setCounts]=useState({warmup:3,main:5,accessory:3});
   const [addPoolSec,setAddPoolSec]=useState(null);
   const [addFilter,setAddFilter]=useState("");
+  const [addTypeFilter,setAddTypeFilter]=useState("all");
   const [history,setHistory]=useState([]);
   const [feedbackFor,setFeedbackFor]=useState(null);
   const [feedback,setFeedback]=useState({q1:5,q2:5,q3:5,q4:3,q5area:"",q5vas:0});
@@ -203,7 +384,7 @@ export default function App(){
   const athlete=athletes.find(a=>a.id===cfg.athleteId);
   const concept=DAY_CONCEPTS.find(c=>c.id===cfg.conceptId);
   const getAthlete=(id)=>athletes.find(a=>a.id===id);
-  const lastExIds=history.length>0?[...(history[0].session?.warmup||[]),...(history[0].session?.main||[]),...(history[0].session?.accessory||[])].map(e=>e.id):[];
+  const lastExIds=history.slice(0,3).flatMap(h=>[...(h.session?.warmup||[]),...(h.session?.main||[]),...(h.session?.accessory||[])].map(e=>e.id));
 
   const s = {
     card:{background:C.bgCard,borderRadius:12,border:`1px solid ${C.border}`,padding:isMobile?14:20,marginBottom:12,boxShadow:"0 1px 3px rgba(0,0,0,0.04)"},
@@ -223,7 +404,8 @@ export default function App(){
 
   const swapEx=(sec,idx)=>{if(!session||!athlete)return;const curIds=new Set([...session.warmup,...session.main,...session.accessory].map(x=>x.id));const secMap={warmup:"Warmup",main:"Main",accessory:"Accessory"};const eqSet=new Set(athlete.equipment);const pool=LIBRARY.filter(e=>e.section===secMap[sec]&&!curIds.has(e.id)&&e.equipment.split(",").map(s=>s.trim()).every(eq=>eqSet.has(eq)));if(!pool.length)return;const pick=pool[Math.floor(Math.random()*pool.length)];const cp=JSON.parse(JSON.stringify(session));cp[sec][idx]={id:pick.id,name:pick.name,nameEn:pick.nameEn||"",type:pick.type,pattern:pick.pattern,target:pick.target,equipment:pick.equipment,speed:pick.speed,sets:(pick.setsReps||"3x10").split("x")[0]||"3",reps:(pick.setsReps||"3x10").replace(/^[^x]*x/,"")||"10",rest:pick.rest||"60s",intensity:pick.intensity||"",point:pick.point||"",video:pick.video||""};setSession(cp);updateKakao(cp);};
   const removeEx=(sec,idx)=>{const cp=JSON.parse(JSON.stringify(session));cp[sec].splice(idx,1);setSession(cp);updateKakao(cp);};
-  const editField=(sec,idx,f,v)=>{const cp=JSON.parse(JSON.stringify(session));cp[sec][idx][f]=v;setSession(cp);updateKakao(cp);};
+  const editField=(sec,idx,f,v)=>{const cp=JSON.parse(JSON.stringify(session));cp[sec][idx][f]=v;setSession(cp);};
+  const finishEdit=()=>{if(session)updateKakao(session);};
   const addEx=(sec,ex)=>{const cp=JSON.parse(JSON.stringify(session));cp[sec].push({id:ex.id,name:ex.name,nameEn:ex.nameEn||"",type:ex.type,pattern:ex.pattern,target:ex.target,equipment:ex.equipment,speed:ex.speed,sets:(ex.setsReps||"3x10").split("x")[0]||"3",reps:(ex.setsReps||"3x10").replace(/^[^x]*x/,"")||"10",rest:ex.rest||"60s",intensity:ex.intensity||"",point:ex.point||"",video:ex.video||""});setSession(cp);updateKakao(cp);setAddPoolSec(null);setAddFilter("");};
   const getAddPool=(sec)=>{const secMap={warmup:"Warmup",main:"Main",accessory:"Accessory"};const curIds=session?new Set([...session.warmup,...session.main,...session.accessory].map(x=>x.id)):new Set();const eqSet=new Set(athlete?.equipment||[]);return LIBRARY.filter(e=>e.section===secMap[sec]&&!curIds.has(e.id)&&e.equipment.split(",").map(s=>s.trim()).every(eq=>eqSet.has(eq)));};
   const saveSession=async()=>{if(!session||!athlete)return;
@@ -301,11 +483,11 @@ export default function App(){
         <div style={{display:"flex",gap:6,flexShrink:0}}><span onClick={()=>swapEx(sec,idx)} style={{cursor:"pointer",fontSize:13,color:C.textMuted}}>🔀</span><span onClick={()=>removeEx(sec,idx)} style={{cursor:"pointer",fontSize:13,color:C.textMuted}}>✕</span></div>
       </div>
       <div style={{display:"flex",gap:5,flexWrap:"wrap",alignItems:"center"}}>
-        <div style={{display:"flex",alignItems:"center",gap:3}}><span style={{fontSize:9,color:C.textDim}}>세트</span><input style={{...s.inp,width:38,padding:"3px 6px",fontSize:11,textAlign:"center"}} value={ex.sets} onChange={e=>editField(sec,idx,"sets",e.target.value)}/></div>
+        <div style={{display:"flex",alignItems:"center",gap:3}}><span style={{fontSize:9,color:C.textDim}}>세트</span><input style={{...s.inp,width:38,padding:"3px 6px",fontSize:11,textAlign:"center"}} value={ex.sets} onChange={e=>editField(sec,idx,"sets",e.target.value)} onBlur={finishEdit}/></div>
         <span style={{color:C.textDim,fontSize:11}}>×</span>
-        <div style={{display:"flex",alignItems:"center",gap:3}}><span style={{fontSize:9,color:C.textDim}}>랩</span><input style={{...s.inp,width:50,padding:"3px 6px",fontSize:11,textAlign:"center"}} value={ex.reps} onChange={e=>editField(sec,idx,"reps",e.target.value)}/></div>
-        <div style={{display:"flex",alignItems:"center",gap:3}}><span style={{fontSize:9,color:C.textDim}}>휴식</span><input style={{...s.inp,width:48,padding:"3px 6px",fontSize:11,textAlign:"center"}} value={ex.rest} onChange={e=>editField(sec,idx,"rest",e.target.value)}/></div>
-        <div style={{display:"flex",alignItems:"center",gap:3}}><span style={{fontSize:9,color:C.textDim}}>강도</span><input style={{...s.inp,width:72,padding:"3px 6px",fontSize:11}} value={ex.intensity} onChange={e=>editField(sec,idx,"intensity",e.target.value)}/></div>
+        <div style={{display:"flex",alignItems:"center",gap:3}}><span style={{fontSize:9,color:C.textDim}}>랩</span><input style={{...s.inp,width:50,padding:"3px 6px",fontSize:11,textAlign:"center"}} value={ex.reps} onChange={e=>editField(sec,idx,"reps",e.target.value)} onBlur={finishEdit}/></div>
+        <div style={{display:"flex",alignItems:"center",gap:3}}><span style={{fontSize:9,color:C.textDim}}>휴식</span><input style={{...s.inp,width:48,padding:"3px 6px",fontSize:11,textAlign:"center"}} value={ex.rest} onChange={e=>editField(sec,idx,"rest",e.target.value)} onBlur={finishEdit}/></div>
+        <div style={{display:"flex",alignItems:"center",gap:3}}><span style={{fontSize:9,color:C.textDim}}>강도</span><input style={{...s.inp,width:72,padding:"3px 6px",fontSize:11}} value={ex.intensity} onChange={e=>editField(sec,idx,"intensity",e.target.value)} onBlur={finishEdit}/></div>
         {ex.video&&<a href={ex.video} target="_blank" rel="noreferrer" style={{fontSize:10,color:C.brandLight,textDecoration:"none",fontWeight:600}}>🎬</a>}
       </div>
       {ex.point&&<div style={{fontSize:10,color:C.textDim,marginTop:4}}>📌 {ex.point}</div>}
@@ -316,15 +498,28 @@ export default function App(){
     <div style={{marginBottom:16}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}>
         <span style={{fontSize:14,fontWeight:700,color:C.brand}}>{emoji} {title} ({exercises.length})</span>
-        <span onClick={()=>setAddPoolSec(addPoolSec===sec?null:sec)} style={{...s.btn("o"),fontSize:11,padding:"4px 10px"}}>➕ 추가</span>
+        <span onClick={()=>{setAddPoolSec(addPoolSec===sec?null:sec);setAddTypeFilter("all");setAddFilter("");}} style={{...s.btn("o"),fontSize:11,padding:"4px 10px"}}>➕ 추가</span>
       </div>
       {exercises.map((ex,i)=><ExRow key={ex.id+i} ex={ex} sec={sec} idx={i}/>)}
       {addPoolSec===sec&&(
         <div style={{background:C.accentSoft,border:`1px solid ${C.accent}40`,borderRadius:10,padding:12,marginTop:6}}>
-          <input style={{...s.inp,marginBottom:8}} placeholder="운동 검색..." value={addFilter} onChange={e=>setAddFilter(e.target.value)}/>
-          <div style={{maxHeight:180,overflow:"auto"}}>{getAddPool(sec).filter(e=>!addFilter||e.name.includes(addFilter)||(e.nameEn||"").toLowerCase().includes(addFilter.toLowerCase())).slice(0,12).map(ex=>(
-            <div key={ex.id} onClick={()=>addEx(sec,ex)} style={{display:"flex",justifyContent:"space-between",padding:"6px 8px",borderRadius:6,cursor:"pointer",fontSize:12,color:C.text,marginBottom:2}} onMouseEnter={e=>e.currentTarget.style.background=C.bgHover} onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
-              <span>{ex.name} <span style={{color:C.textDim}}>({ex.type})</span></span><span style={{color:C.accent,fontWeight:700}}>+</span>
+          <div style={{display:"flex",gap:6,marginBottom:8}}>
+            <input style={{...s.inp,flex:1}} placeholder="운동 검색..." value={addFilter} onChange={e=>setAddFilter(e.target.value)}/>
+            <select style={{...s.sel,width:110,fontSize:11}} value={addTypeFilter} onChange={e=>setAddTypeFilter(e.target.value)}>
+              <option value="all">전체 유형</option>
+              <option value="Power">Power</option><option value="Strength">Strength</option>
+              <option value="Hypertrophy">Hypertrophy</option><option value="SSC">SSC</option>
+              <option value="Transfer">Transfer</option><option value="Stability">Stability</option>
+              <option value="Mobility">Mobility</option><option value="Warmup">Warmup</option>
+            </select>
+          </div>
+          <div style={{maxHeight:220,overflow:"auto"}}>{getAddPool(sec).filter(e=>{
+            if(addTypeFilter!=="all"&&e.type!==addTypeFilter)return false;
+            if(addFilter&&!e.name.includes(addFilter)&&!(e.nameEn||"").toLowerCase().includes(addFilter.toLowerCase()))return false;
+            return true;
+          }).slice(0,30).map(ex=>(
+            <div key={ex.id} onClick={()=>{addEx(sec,ex);setAddTypeFilter("all");}} style={{display:"flex",justifyContent:"space-between",padding:"6px 8px",borderRadius:6,cursor:"pointer",fontSize:12,color:C.text,marginBottom:2}} onMouseEnter={e=>e.currentTarget.style.background=C.bgHover} onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
+              <span>{ex.name} <span style={s.tag(TC[ex.type]||"#999")}>{ex.type}</span></span><span style={{color:C.accent,fontWeight:700}}>+</span>
             </div>
           ))}</div>
         </div>
@@ -463,7 +658,7 @@ export default function App(){
   const renderLibrary=()=>{
     const fl=LIBRARY.filter(e=>{if(libFilter.section!=="all"&&e.section!==libFilter.section)return false;if(libFilter.type!=="all"&&e.type!==libFilter.type)return false;if(libFilter.search&&!e.name.includes(libFilter.search)&&!(e.nameEn||"").toLowerCase().includes(libFilter.search.toLowerCase())&&!e.id.toLowerCase().includes(libFilter.search.toLowerCase()))return false;return true;});
     return(<>
-      <h2 style={{fontSize:isMobile?18:20,fontWeight:800,margin:"0 0 18px",color:C.brand}}>📚 라이브러리 <span style={{fontSize:14,fontWeight:400,color:C.textMuted}}>({fl.length}/{LIBRARY.length})</span></h2>
+      <h2 style={{fontSize:isMobile?18:20,fontWeight:800,margin:"0 0 18px",color:C.brand}}>📚 라이브러리 <span style={{fontSize:14,fontWeight:400,color:C.textMuted}}>({fl.length}/{libCount})</span></h2>
       <div style={{...s.card,padding:14}}><div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
         <input style={{...s.inp,width:isMobile?"100%":200}} placeholder="검색..." value={libFilter.search} onChange={e=>setLibFilter(f=>({...f,search:e.target.value}))}/>
         <select style={{...s.sel,width:isMobile?"48%":120}} value={libFilter.section} onChange={e=>setLibFilter(f=>({...f,section:e.target.value}))}><option value="all">전체 구간</option><option value="Warmup">Warmup</option><option value="Main">Main</option><option value="Accessory">Accessory</option></select>
@@ -598,7 +793,7 @@ export default function App(){
                 <div key={n.id} onClick={()=>navTo(n.id)} style={{display:"flex",alignItems:"center",gap:10,padding:"10px 12px",borderRadius:8,marginBottom:3,cursor:"pointer",background:page===n.id?"rgba(232,168,56,0.2)":"transparent",color:page===n.id?C.accent:"rgba(255,255,255,0.55)",fontWeight:page===n.id?700:400,fontSize:isTablet?12:13}}><span>{n.icon}</span><span>{n.label}</span></div>
               ))}
             </div>
-            <div style={{padding:"12px 18px",borderTop:"1px solid rgba(255,255,255,0.08)",fontSize:10,color:"rgba(255,255,255,0.3)"}}>{LIBRARY.length}개 운동 · {athletes.length}명{loadingAthletes?" · 로딩중...":""} · ☁️ Sheets 연동</div>
+            <div style={{padding:"12px 18px",borderTop:"1px solid rgba(255,255,255,0.08)",fontSize:10,color:"rgba(255,255,255,0.3)"}}><span onClick={refreshData} style={{cursor:"pointer",color:"rgba(255,255,255,0.5)"}}>🔄</span> {libCount}개 운동 · {athletes.length}명{loadingAthletes?" · 로딩중...":""} · ☁️ Sheets</div>
           </div>
         )}
         {/* Main content */}
