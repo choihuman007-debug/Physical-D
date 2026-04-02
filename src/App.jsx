@@ -37,53 +37,43 @@ function parseCSV(text) {
   for (let i = 0; i < text.length; i++) {
     const ch = text[i];
     if (ch === '"') { inQuotes = !inQuotes; }
-    else if (ch === '\n' && !inQuotes) { lines.push(current); current = ''; }
+    else if ((ch === '\n' || (ch === '\r' && text[i+1] === '\n')) && !inQuotes) {
+      if (ch === '\r') i++; // skip \n after \r
+      lines.push(current); current = '';
+    }
+    else if (ch === '\r' && !inQuotes) { lines.push(current); current = ''; }
     else { current += ch; }
   }
   if (current.trim()) lines.push(current);
 
   if (lines.length < 2) return null;
-  const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
 
-  const findCol = (keywords) => {
-    for (const kw of keywords) {
-      const idx = headers.findIndex(h => h.toLowerCase().includes(kw.toLowerCase()));
-      if (idx >= 0) return idx;
-    }
-    return -1;
-  };
-
-  // 컬럼 매핑 (다양한 헤더명 지원)
-  const cols = {
-    id: findCol(['ID', 'id']),
-    name: findCol(['운동이름', '이름', 'name']),
-    nameEn: findCol(['영문이름', '영문', 'english', 'nameEn']),
-    pattern: findCol(['움직임패턴', '패턴', 'pattern']),
-    type: findCol(['운동유형', '유형', 'type']),
-    target: findCol(['타겟근육', '타겟', 'target']),
-    equipment: findCol(['사용기구', '기구', 'equipment']),
-    speed: findCol(['운동속도', '속도', 'speed']),
-    section: findCol(['세션구간', '구간', 'section']),
-    setsReps: findCol(['세트x랩', '세트', 'sets', 'setsReps']),
-    rest: findCol(['쉬는시간', '휴식', 'rest']),
-    intensity: findCol(['추천강도', '강도', 'intensity']),
-    point: findCol(['코칭포인트', '코칭', 'point']),
-    video: findCol(['영상링크', '영상', '링크', 'video', 'link']),
-  };
-
-  const result = [];
-  for (let i = 1; i < lines.length; i++) {
+  // CSV 행을 배열로 파싱하는 함수
+  const parseLine = (line) => {
     const vals = [];
     let cur = '', inQ = false;
-    for (let j = 0; j < lines[i].length; j++) {
-      const c = lines[i][j];
+    for (let j = 0; j < line.length; j++) {
+      const c = line[j];
       if (c === '"') { inQ = !inQ; }
       else if (c === ',' && !inQ) { vals.push(cur.trim()); cur = ''; }
       else { cur += c; }
     }
     vals.push(cur.trim());
+    return vals.map(v => v.replace(/^"|"$/g, ''));
+  };
 
-    const g = (key) => (cols[key] >= 0 && cols[key] < vals.length) ? vals[cols[key]].replace(/^"|"$/g, '') : '';
+  const headers = parseLine(lines[0]);
+
+  // 정확한 헤더명으로 컬럼 인덱스 찾기 (시트 헤더: id, name, nameEn, pattern, type, target, equipment, speed, section, setsReps, rest, intensity, point, video)
+  const colMap = {};
+  headers.forEach((h, i) => { colMap[h.trim()] = i; });
+
+  const result = [];
+  for (let i = 1; i < lines.length; i++) {
+    if (!lines[i].trim()) continue;
+    const vals = parseLine(lines[i]);
+
+    const g = (key) => (colMap[key] !== undefined && colMap[key] < vals.length) ? vals[colMap[key]] : '';
     const id = g('id');
     if (!id) continue;
 
