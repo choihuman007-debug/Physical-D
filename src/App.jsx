@@ -27,66 +27,6 @@ let LIBRARY = RAW_LIB.map(r => ({
   intensity:r.it, point:r.pt, video:r.v
 }));
 
-// ─── Google Sheets CSV에서 운동 라이브러리 실시간 로드 ───
-const LIBRARY_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTtzTF4uESywdWzc3THSCPGnAFP3WCzTpwgaIHS6Xy7kFuuZgTSzwZ4xPWuvhGFdOMHhwF8yrnI3n-R/pub?gid=0&single=true&output=csv';
-
-function parseCSV(text) {
-  const lines = [];
-  let current = '';
-  let inQuotes = false;
-  for (let i = 0; i < text.length; i++) {
-    const ch = text[i];
-    if (ch === '"') { inQuotes = !inQuotes; }
-    else if ((ch === '\n' || (ch === '\r' && text[i+1] === '\n')) && !inQuotes) {
-      if (ch === '\r') i++; // skip \n after \r
-      lines.push(current); current = '';
-    }
-    else if (ch === '\r' && !inQuotes) { lines.push(current); current = ''; }
-    else { current += ch; }
-  }
-  if (current.trim()) lines.push(current);
-
-  if (lines.length < 2) return null;
-
-  // CSV 행을 배열로 파싱하는 함수
-  const parseLine = (line) => {
-    const vals = [];
-    let cur = '', inQ = false;
-    for (let j = 0; j < line.length; j++) {
-      const c = line[j];
-      if (c === '"') { inQ = !inQ; }
-      else if (c === ',' && !inQ) { vals.push(cur.trim()); cur = ''; }
-      else { cur += c; }
-    }
-    vals.push(cur.trim());
-    return vals.map(v => v.replace(/^"|"$/g, ''));
-  };
-
-  const headers = parseLine(lines[0]);
-
-  // 정확한 헤더명으로 컬럼 인덱스 찾기 (시트 헤더: id, name, nameEn, pattern, type, target, equipment, speed, section, setsReps, rest, intensity, point, video)
-  const colMap = {};
-  headers.forEach((h, i) => { colMap[h.trim()] = i; });
-
-  const result = [];
-  for (let i = 1; i < lines.length; i++) {
-    if (!lines[i].trim()) continue;
-    const vals = parseLine(lines[i]);
-
-    const g = (key) => (colMap[key] !== undefined && colMap[key] < vals.length) ? vals[colMap[key]] : '';
-    const id = g('id');
-    if (!id) continue;
-
-    result.push({
-      id, name: g('name'), nameEn: g('nameEn'), pattern: g('pattern'),
-      type: g('type'), target: g('target'), equipment: g('equipment'),
-      speed: g('speed'), section: g('section'), setsReps: g('setsReps'),
-      rest: g('rest'), intensity: g('intensity'), point: g('point'), video: g('video')
-    });
-  }
-  return result.length > 0 ? result : null;
-}
-
 // ─── RESPONSIVE HOOK ───
 function useWindowSize() {
   const [size, setSize] = useState({w:window.innerWidth, h:window.innerHeight});
@@ -264,34 +204,31 @@ export default function App(){
   const [libCount,setLibCount]=useState(LIBRARY.length);
   const showSave=(msg)=>{setSaveMsg(msg);setTimeout(()=>setSaveMsg(""),2500);};
 
-  // ─── Google Sheets CSV에서 운동 라이브러리 로드 ───
+  // ─── Google Sheets에서 운동 라이브러리 로드 (Apps Script 경유) ───
   useEffect(()=>{
-    fetch(LIBRARY_CSV_URL)
-      .then(res=>res.text())
-      .then(text=>{
-        const parsed=parseCSV(text);
-        if(parsed&&parsed.length>0){
-          LIBRARY=parsed;
-          setLibCount(parsed.length);
-          console.log('[Physical D] 라이브러리 로드 완료:',parsed.length,'개 운동');
+    readSheets('getLibrary')
+      .then(data=>{
+        if(data.data&&data.data.length>0){
+          LIBRARY=data.data;
+          setLibCount(data.data.length);
+          console.log('[Physical D] 라이브러리 로드 완료:',data.data.length,'개 운동');
         }
       })
-      .catch(err=>console.error('라이브러리 CSV 로드 실패 (하드코딩 사용):',err));
+      .catch(err=>console.error('라이브러리 로드 실패 (하드코딩 사용):',err));
   },[]);
 
   // ─── 데이터 새로고침 함수 ───
   const refreshData=async()=>{
     setSaving(true);setSaveMsg("🔄 데이터 새로고침 중...");
     try{
-      const [athData,sesData,libRes]=await Promise.all([
+      const [athData,sesData,libData]=await Promise.all([
         readSheets('getAthletes'),
         readSheets('getSessions'),
-        fetch(LIBRARY_CSV_URL).then(r=>r.text()).catch(()=>null)
+        readSheets('getLibrary').catch(()=>({data:null}))
       ]);
       // 라이브러리 새로고침
-      if(libRes){
-        const parsed=parseCSV(libRes);
-        if(parsed&&parsed.length>0){LIBRARY=parsed;setLibCount(parsed.length);}
+      if(libData.data&&libData.data.length>0){
+        LIBRARY=libData.data;setLibCount(libData.data.length);
       }
       const mapped=(athData.data||[]).map(a=>({
         id:a.athleteCode, name:a.name, sport:a.sport, position:a.position,
@@ -810,4 +747,3 @@ export default function App(){
     </div>
   );
 }
-
